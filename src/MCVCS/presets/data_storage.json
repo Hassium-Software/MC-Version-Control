@@ -1,0 +1,16 @@
+{
+    "used_ports": [
+        {}
+    ],
+    "users": {
+        "self": {"key":"None"}
+    },
+    "settings": {
+        "remote": "self",
+        "remote-usr": "self"
+    },
+    "ctx": {
+        "branch": "master",
+        "server": "None"
+    }
+}
