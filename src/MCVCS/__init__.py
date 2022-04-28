@@ -9,14 +9,29 @@ class Context():
      - current server
      - working directory
     '''
-    def __init__(self, branch="master",
-        server=None):
+    def __init__(self):
         self.cwd = os.getcwd()
-        self.branch= branch
-        self.server = server
+        self.branch= None
+        self.server = None
+        self.stage = []
+        self.data = dict()
 
     @staticmethod
-    def loaded():
+    def load():
+        output = Context()
         with open(f'{os.getcwd()}/.MCVCS/data_storage.json') as f:
             data = json.loads(f.read())
-        return Context(branch = data['ctx']["branch"], server=data['ctx']['server'])
+
+        output.branch = data["ctx"]["branch"]
+        output.server = data["ctx"]["server"]
+        output.stage = data["ctx"]["stage"]
+        output.data = data
+        return output
+    
+    def save(self):
+        self.data["ctx"]["stage"] = self.stage
+        self.data["ctx"]["server"] = self.server
+        self.data["ctx"]["branch"] = self.branch
+
+        with open(f'{self.cwd}/.MCVCS/data_storage.json','w') as f:
+            f.write(json.dumps(self.data, indent=4),)

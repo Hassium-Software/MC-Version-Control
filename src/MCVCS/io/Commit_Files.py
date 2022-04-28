@@ -22,7 +22,7 @@ class Commit_File():
     def load(ctx, iid:int = None):
         output = Commit_File()
         if iid==None:
-            iid = len(os.listdir(f'{ctx.cwd}/.MCVCS/branches/{ctx.branch}/commits'))-1 # get last commit
+            iid = len(os.listdir(f'{ctx.cwd}/.MCVCS/branches/{ctx.branch}/commits')) # get last commit
         
         idstr = repr(chr(iid))[3:-1]
 

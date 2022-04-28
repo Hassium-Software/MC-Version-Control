@@ -22,5 +22,5 @@ Later, I intend on using this system for a graphic server managing client I am w
 |init| initializes vcs in current directory|`$ mcvcs init`|
 |set-remote| set the remote and connect| `$ mcvcs activate ip:port usr pswd`|
 |commit|commits staged changes| `$ mcvcs commit "your message here"`|
-|stage| stage a change for commit| `$ mcvsc stage <server-name> <file> <file2> <...>`
-|
+|stage| stage a change for commit| `$ mcvsc stage [<server>:]<file>`|
+|unstage| unstage a change| `$ mcvsc unstage [<server>:]<file>`|

@@ -22,11 +22,24 @@ def init_project():
 
 @vcs_function('make-server')
 def make_server(name: str, port: str):
-    vcs.io.Setup.make_server(vcs.Context.loaded(), name, port)
+    vcs.io.Setup.make_server(vcs.Context.load(), name, port)
+
+@vcs_function('stage')
+def stage(file: str):
+    ctx = vcs.Context.load()
+    ctx.stage.append(file)
+    ctx.stage = list(set(ctx.stage)) # removes duplicates
+    ctx.save()
+
+@vcs_function('unstage')
+def unstage(file: str):
+    ctx = vcs.Context.load()
+    ctx.stage.remove(file) # todo: throw a proper error
+    ctx.save()
 
 @vcs_function('test')
 def test():
-    e = vcs.io.Commit_Files.Commit_File.load(vcs.Context.loaded())
+    e = vcs.io.Commit_Files.Commit_File.load(vcs.Context.load())
     print(e.tracked_files, '\n')
     print(e.changes, '\n')
     print(e.untracked, '\n')

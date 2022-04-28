@@ -11,6 +11,7 @@
     },
     "ctx": {
         "branch": "master",
-        "server": "None"
+        "server": "none",
+        "stage": []
     }
 }
