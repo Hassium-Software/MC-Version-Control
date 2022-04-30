@@ -50,7 +50,7 @@ Alot of this is to make it pretty and readable. Its not perfect, but I like the 
 |<server>::<trackked files> <hex commit id>
 
 ))<change type> <server>::<file>
-((<line-no, 0->inf><<<data>
+((<line-no, 0->inf>-[<<|>>]<data>
 
 ]]<server>::<filename> <size in bytes> // data that can't be logged (ex: jar file)
 <data with the exact same size as specified above>
