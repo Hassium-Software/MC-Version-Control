@@ -46,8 +46,8 @@ Alot of this is to make it pretty and readable. Its not perfect, but I like the 
 <author>
 <date>
 ################
-|<server>::<tracked files> <last commit|hex commit id>
-|<server>::<trackked files> <hex commit id>
+|<server>::<tracked files> <last commit|hex commit id> <since>
+|<server>::<trackked files> <hex commit id> <since>
 
 ))<change type> <server>::<file>
 ((<line-no, 0->inf>-[<<|>>]<data>
@@ -63,10 +63,6 @@ Alot of this is to make it pretty and readable. Its not perfect, but I like the 
 |C| File Creation|
 |M| File Modified|
 |D| File Delete|
-|R-\<commit\>| Rollback|
-|SC-\<server\>|Server Create|
-|SD-\<server\>|Server Delete|
-|BR-\<backup-id\>| Rollback using Backups|
 
 ## example
 
@@ -76,18 +72,21 @@ Updating EssentialsX and changing chat formatting
 spidertyler2005
 2022-04-24--10:21:16
 ################
-|lobby::plugins/essentials/config.yml F8
-|lobby::plugins/essentialsX.jar 2
-|lobby::plugins/vault.jar F7
-|lobby::plugins/vault/config.yml 1
-|lobby::plugins/luckperms.jar F7
-|lobby::server.jar F6
-|lobby::mcvcs_plugin_store.json F8
+|lobby::plugins/essentials/config.yml F8 0
+|lobby::plugins/essentialsX.jar 2 0
+|lobby::plugins/vault.jar F7 0
+|lobby::plugins/vault/config.yml 1 0
+|lobby::plugins/luckperms.jar F7 0
+|lobby::server.jar F6 0
+|lobby::mcvcs_plugin_store.json F8 0
 
 ))M lobby::plugins/essentials/config.yml
+((710>>  format: '<{DISPLAYNAME}>  {MESSAGE}'
 ((710<<  format: '{DISPLAYNAME}  {MESSAGE}'
+((943>>spawn-on-join: false
 ((943<<spawn-on-join: true
 ))M lobby::mcvcs_plugin_store.json
+((1>>   "essentials":{"version":"2.20.0-dev+5-d891260","path":"plugins/essentialsX.jar"},
 ((1<<   "essentials":{"version":"2.20.0-dev+5-d891268","path":"plugins/essentialsX.jar"},
 
 

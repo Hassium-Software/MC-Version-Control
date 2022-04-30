@@ -19,18 +19,18 @@ class Commit_File():
 
         self.untracked = [] # [{"file":"", "data":b''}]
     
-    def add_tracked_file(self, file: str, last_commit: str):
+    def add_tracked_file(self, file: str, last_commit: str, since: str):
         self.tracked_files.append(
-                {"file":file, "last-commit":last_commit}
+                {"file":file, "last-commit":last_commit, "since": since}
             )
     
     def add_change(self, change: dict):
         if change == {}: return
         self.changes.append(change)
-
     
-    def save(self, ctx, filename: str = None) -> None:
-        if not filename:
+    # todo: make prettier
+    def save(self, ctx, filename: str = '') -> None:
+        if filename == '':
             iid = len(os.listdir(f'{ctx.cwd}/.MCVCS/branches/{ctx.branch}/commits')) # get last commit +1
         
             filename = hex(iid)[2:]
@@ -132,6 +132,7 @@ class Commit_Parser:
 
         return self.collecting_bytes
     
+    #todo: comment this up
     def step(self):
         if self.cursor > len(self.input_text)-1:
             return None
@@ -148,7 +149,8 @@ class Commit_Parser:
         if line.startswith(b'|'):
             file = line[1:].split(b' ')[0].decode()
             last_commit = line[1:].split(b' ')[1].decode()
-            self.commit.add_tracked_file(file, last_commit)
+            since = line[1:].split(b' ')[2].decode()
+            self.commit.add_tracked_file(file, last_commit, since)
         
         elif line.startswith(b'))'):
             args = line[2:].split(b' ')
