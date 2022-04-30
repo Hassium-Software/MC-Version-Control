@@ -39,7 +39,10 @@ def unstage(file: str):
 
 @vcs_function('test')
 def test():
-    e = vcs.io.Commit_Files.Commit_File.load(vcs.Context.load())
+
+    e = vcs.io.Commit_Files.Commit_Parser(vcs.Context.load()).full_parse()
+    e.tracked_files.append({'file':"gamingus-"+str(len(e.tracked_files)),'last-commit':0})
+    e.save(vcs.Context.load())
     print(e.tracked_files, '\n')
     print(e.changes, '\n')
     print(e.untracked, '\n')
